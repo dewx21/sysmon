@@ -1,5 +1,9 @@
 try:
-    with open('doesnotexistfile.txt') as f:
-        print(f.read())
+    with open("/proc/meminfo") as f:
+        for line in f:
+            if line.startswith("MemTotal"):
+                print(line.strip())
 except FileNotFoundError:
-    print('This file does not exist')
+    print("/proc/meminfo not found — are you on Linux?")
+except PermissionError:
+    print("No permission to read /proc/meminfo")
