@@ -1,2 +1,5 @@
-with open("/proc/meminfo") as f:
-    print(f.read())
+try:
+    with open('doesnotexistfile.txt') as f:
+        print(f.read())
+except FileNotFoundError:
+    print('This file does not exist')
